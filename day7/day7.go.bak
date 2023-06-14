@@ -1,0 +1,140 @@
+package day7
+
+import (
+	"advent-of-code-22/lib"
+	"fmt"
+	"strings"
+)
+
+func Run() {
+	input, err := lib.ReadLines("file-traverse.txt") // file-traverse-test
+	lib.HandleError(err)
+
+	rootDir := Directory{nil, "/", []File{}, []*Directory{}}
+	currentDir := &rootDir
+	for _, line := range input {
+		// fmt.Println(i, ":", line)
+		cmd := strings.Split(line, " ")
+
+		switch cmd[0] {
+		case "$":
+			switch cmd[1] {
+			case "cd":
+				currentDir = currentDir.ChangeDir(cmd[2])
+			case "ls":
+				continue
+			}
+		case "dir":
+			currentDir.AddSubDir(cmd[1])
+		default:
+			currentDir.AddFile(lib.StrToInt(cmd[0]), cmd[1])
+		}
+	}
+
+	// rootDir.Display()
+	fmt.Println("Dir Sizes:")
+	fmt.Println("total:", rootDir.FindBySize(100000))
+}
+
+type File struct {
+	size int
+	name string
+}
+
+type Directory struct {
+	parent  *Directory
+	name    string
+	files   []File
+	subDirs []*Directory
+}
+
+func (d *Directory) AddSubDir(name string) {
+	dir := Directory{d, name, []File{}, []*Directory{}}
+	d.subDirs = append(d.subDirs, &dir)
+}
+
+func (d *Directory) AddFile(size int, name string) {
+	f := File{size, name}
+	d.files = append(d.files, f)
+}
+
+func (d *Directory) GetSubDir(name string) *Directory {
+	for _, dir := range d.subDirs {
+		if dir.name == name {
+			return dir
+		}
+	}
+
+	return d
+}
+
+func (d *Directory) GetParent() *Directory {
+	if d.parent != nil {
+		return d.parent
+	}
+
+	return d
+}
+
+func (d *Directory) ChangeDir(name string) *Directory {
+	if name == ".." {
+		return d.GetParent()
+	} else if name == d.name {
+		return d
+	}
+
+	return d.GetSubDir(name)
+}
+
+func (d *Directory) GetSize() int {
+	size := 0
+
+	for _, file := range d.files {
+		size += file.size
+	}
+
+	for _, dir := range d.subDirs {
+		size += dir.GetSize()
+	}
+
+	return size
+}
+
+func (d *Directory) Display() {
+	tabs := strings.Repeat("  ", d.Depth())
+	fmt.Printf("%s%s (dir)\n", tabs, d.name)
+
+	for _, f := range d.files {
+		fmt.Printf("%s- %s (file, size=%d)\n", tabs, f.name, f.size)
+	}
+
+	for _, dir := range d.subDirs {
+		dir.Display()
+	}
+}
+
+func (d *Directory) Depth() int {
+	depth := 0
+	parent := d.parent
+	for parent != nil {
+		parent = parent.parent
+		depth++
+	}
+
+	return depth
+}
+
+func (d *Directory) FindBySize(size int) int {
+	total := 0
+	for _, dir := range d.subDirs {
+		s := dir.GetSize()
+		if s <= size {
+			total += s
+			fmt.Printf("%s: %d\n", d.name, s)
+		}
+
+		total += dir.FindBySize(size)
+	}
+
+	return total
+}
