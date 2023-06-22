@@ -51,7 +51,7 @@ func (i *Instruction) String() string {
 type InstructionList []Instruction
 
 func Run() {
-	input, err := lib.ReadLines("supply-stacks.txt")
+	input, err := lib.ReadLines("day5", "supply-stacks.txt")
 	lib.HandleError(err)
 
 	stacks, instructions := parseInput(input)

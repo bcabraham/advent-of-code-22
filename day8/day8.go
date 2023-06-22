@@ -7,7 +7,7 @@ import (
 )
 
 func Run() {
-	input, err := lib.ReadLines("tree-house.txt") // tree-house-test
+	input, err := lib.ReadLines("day8", "tree-house.txt") // tree-house-test
 	lib.HandleError(err)
 
 	arr := NewArray2D(input)

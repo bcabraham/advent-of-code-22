@@ -58,7 +58,7 @@ var (
 )
 
 func Run() {
-	rpsStrategy, err := lib.ReadLines("rock-paper-scissors.txt")
+	rpsStrategy, err := lib.ReadLines("day2", "rock-paper-scissors.txt")
 	lib.HandleError(err)
 
 	WithPlayerChoice(rpsStrategy)

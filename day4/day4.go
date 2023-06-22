@@ -16,7 +16,7 @@ type Comparable func(a, b CleaningOrder) bool
 type CleaningOrderList [][]CleaningOrder
 
 func Run() {
-	cleaningOrders, err := lib.ReadLines("camp-cleanup.txt")
+	cleaningOrders, err := lib.ReadLines("day4", "camp-cleanup.txt")
 	lib.HandleError(err)
 
 	cleaningOrdersList := parseCleaningOrderList(cleaningOrders)

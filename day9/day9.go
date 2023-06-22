@@ -46,7 +46,7 @@ func (m *Move) String() string {
 }
 
 func Run() {
-	input, err := lib.ReadLines("rope-bridge.txt") // rope-bridge-test.txt
+	input, err := lib.ReadLines("day9", "rope-bridge.txt") // rope-bridge-test.txt
 	lib.HandleError(err)
 
 	moves := loadMoves(input)

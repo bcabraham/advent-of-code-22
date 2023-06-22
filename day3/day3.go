@@ -15,7 +15,7 @@ func Run() {
 		charMap[string(c)] = i + 1
 	}
 
-	rucksacks, err := lib.ReadLines("rucksacks.txt")
+	rucksacks, err := lib.ReadLines("day3", "rucksacks.txt")
 	lib.HandleError(err)
 	compareRucksacks(rucksacks)
 	findBadges(rucksacks)

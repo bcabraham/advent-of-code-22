@@ -6,7 +6,7 @@ import (
 )
 
 func Run() {
-	input, err := lib.ReadLines("cathode-ray-tube.txt") // cathode-ray-tube-test.txt
+	input, err := lib.ReadLines("day10", "cathode-ray-tube.txt") // cathode-ray-tube-test.txt
 	lib.HandleError(err)
 
 	processor := NewProcessor(input, false)

@@ -8,18 +8,47 @@ import (
 	"strings"
 )
 
-const DATA_PATH = "/home/babraham/projects/personal/advent-of-code-22/data/"
-
 func HandleError(err error) {
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
+func joinPath(trim bool, parts ...string) string {
+	path := ""
+	for _, p := range parts {
+		if !strings.HasSuffix(p, string(os.PathSeparator)) {
+			p = p + string(os.PathSeparator)
+		}
+
+		path += p
+	}
+
+	if trim {
+		path = strings.TrimSuffix(path, string(os.PathSeparator))
+	}
+
+	return path
+}
+
+func getModulePath(module string) (string, error) {
+	cwd, err := os.Getwd()
+	if err != nil {
+		return "", err
+	}
+
+	return joinPath(false, cwd, module), nil
+}
+
 // ReadLines reads a whole file into memory
 // and returns a slice of its lines.
-func ReadLines(path string) ([]string, error) {
-	fullPath := DATA_PATH + path
+func ReadLines(module string, filename string) ([]string, error) {
+	path, err := getModulePath(module)
+	if err != nil {
+		return nil, err
+	}
+
+	fullPath := joinPath(true, path, filename)
 	file, err := os.Open(fullPath)
 	if err != nil {
 		return nil, err

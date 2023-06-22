@@ -12,7 +12,7 @@ const (
 )
 
 func Run() {
-	input, err := lib.ReadLines("file-traverse.txt") // file-traverse-test
+	input, err := lib.ReadLines("day7", "file-traverse.txt") // file-traverse-test
 	lib.HandleError(err)
 
 	root := Directory{}

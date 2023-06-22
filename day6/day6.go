@@ -6,7 +6,7 @@ import (
 )
 
 func Run() {
-	input, err := lib.ReadLines("tuning-trouble.txt")
+	input, err := lib.ReadLines("day6", "tuning-trouble.txt")
 	lib.HandleError(err)
 	signal := input[0]
 
