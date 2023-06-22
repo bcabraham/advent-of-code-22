@@ -8,7 +8,7 @@ import (
 )
 
 func Run() {
-	input, err := lib.ReadLines("monkey-business-test.txt") // monkey-business.txt
+	input, err := lib.ReadLines("day11", "monkey-business-test.txt") // monkey-business.txt
 	lib.HandleError(err)
 
 	loadFile(input)
@@ -91,11 +91,26 @@ func (m *Monkey) SetOperation(input string) {
 	if operand == "old" {
 		switch operator {
 		case "+":
-			f = func(old int) { return old + old }
+			f = func(old int) int { return old + old }
+		case "-":
+			f = func(old int) int { return 0 }
+		case "*":
+			f = func(old int) int { return old * old }
+		case "/":
+			f = func(old int) int { return 1 }
 		}
-
 	} else {
-
+		op := lib.StrToInt(operand)
+		switch operator {
+		case "+":
+			f = func(old int) int { return old + op }
+		case "-":
+			f = func(old int) int { return old - op }
+		case "*":
+			f = func(old int) int { return old * op }
+		case "/":
+			f = func(old int) int { return old / op }
+		}
 	}
 
 	m.Operation = f
