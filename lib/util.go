@@ -70,3 +70,15 @@ func StrToInt(str string) int {
 
 	return i
 }
+
+func StrToIntArray(s string) []int {
+	data := strings.Split(s, ",")
+	arr := []int{}
+
+	for _, d := range data {
+		i := StrToInt(d)
+		arr = append(arr, i)
+	}
+
+	return arr
+}
