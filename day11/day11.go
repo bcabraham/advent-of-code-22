@@ -7,17 +7,25 @@ import (
 	"strings"
 )
 
+var (
+	debug = false
+)
+
 func Run() {
-	input, err := lib.ReadLines("day11", "monkey-business.txt") // monkey-business.txt
+	input, err := lib.ReadLines("day11", "monkey-business-test.txt") // monkey-business.txt
 	lib.HandleError(err)
 
 	monkeys := loadFile(input)
 
 	for round := 1; round <= 10000; round++ {
-		fmt.Println("Round:", round)
-		fmt.Println("------------------------------------")
 		for _, monkey := range monkeys {
 			monkey.DoTurn(monkeys)
+		}
+
+		if round == 1 || round == 20 || round%1000 == 0 {
+			fmt.Printf("== After Round %d ==\n", round)
+			getTopTwoMonkeys(monkeys)
+			fmt.Println()
 		}
 	}
 
@@ -56,7 +64,10 @@ func NewMonkey(name string, startingItems []int, operation, testCondition, resul
 	falseResult := lib.StrToInt(strings.TrimSpace(data))
 
 	m := Monkey{name, items, operation, opFunc, testCondition, testVal, resultIfTrue, trueResult, resultIfFalse, falseResult, 0}
-	fmt.Printf("new monkey: %s\n", m.String())
+
+	if debug {
+		fmt.Printf("new monkey: %s\n", m.String())
+	}
 
 	return &m
 }
@@ -72,7 +83,9 @@ func getOpFunc(operation string) OperatorFunc {
 		case "+":
 			f = func(old int) int {
 				new := old + old
-				fmt.Printf("\tWorry level is increased by %d to %d.\n", old, new)
+				if debug {
+					fmt.Printf("\tWorry level is increased by %d to %d.\n", old, new)
+				}
 				return new
 			}
 		case "-":
@@ -80,7 +93,9 @@ func getOpFunc(operation string) OperatorFunc {
 		case "*":
 			f = func(old int) int {
 				new := old * old
-				fmt.Printf("\tWorry level is multiplied by %d to %d.\n", old, new)
+				if debug {
+					fmt.Printf("\tWorry level is multiplied by %d to %d.\n", old, new)
+				}
 				return new
 			}
 		case "/":
@@ -92,25 +107,33 @@ func getOpFunc(operation string) OperatorFunc {
 		case "+":
 			f = func(old int) int {
 				new := old + op
-				fmt.Printf("\tWorry level is increased by %d to %d.\n", op, new)
+				if debug {
+					fmt.Printf("\tWorry level is increased by %d to %d.\n", op, new)
+				}
 				return new
 			}
 		case "-":
 			f = func(old int) int {
 				new := old - op
-				fmt.Printf("\tWorry level is decreased by %d to %d.\n", op, new)
+				if debug {
+					fmt.Printf("\tWorry level is decreased by %d to %d.\n", op, new)
+				}
 				return new
 			}
 		case "*":
 			f = func(old int) int {
 				new := old * op
-				fmt.Printf("\tWorry level is multiplied by %d to %d.\n", op, new)
+				if debug {
+					fmt.Printf("\tWorry level is multiplied by %d to %d.\n", op, new)
+				}
 				return new
 			}
 		case "/":
 			f = func(old int) int {
 				new := old / op
-				fmt.Printf("\tWorry level is divided by %d to %d.\n", op, new)
+				if debug {
+					fmt.Printf("\tWorry level is divided by %d to %d.\n", op, new)
+				}
 				return new
 			}
 		}
@@ -124,29 +147,41 @@ func (m *Monkey) String() string {
 }
 
 func (m *Monkey) inspect(item int) int {
-	fmt.Printf("Monkey inspects an item with a worry level of %d.\n", item)
+	if debug {
+		fmt.Printf("Monkey inspects an item with a worry level of %d.\n", item)
+	}
+
 	m.inspected++
 
 	item = m.opFunc(item)
 
+	// What does this actually do????!!!
 	item = item / 3
-	fmt.Printf("\tMonkey gets bored with item. Worry level is divided by 3 to %d.\n", item)
+	if debug {
+		fmt.Printf("\tMonkey gets bored with item. Worry level is divided by 3 to %d.\n", item)
+	}
 
 	return item
 }
 
 func (m *Monkey) testItem(item int) bool {
 	if item%m.testValue == 0 {
-		fmt.Printf("\tCurrent worry level is divisible by %d.\n", m.testValue)
+		if debug {
+			fmt.Printf("\tCurrent worry level is divisible by %d.\n", m.testValue)
+		}
 		return true
 	}
 
-	fmt.Printf("\tCurrent worry level is not divisible by %d.\n", m.testValue)
+	if debug {
+		fmt.Printf("\tCurrent worry level is not divisible by %d.\n", m.testValue)
+	}
 	return false
 }
 
 func (m *Monkey) throw(item int, other *Monkey) {
-	fmt.Printf("\tItem with worry level %d is thrown to %s.\n", item, other.name)
+	if debug {
+		fmt.Printf("\tItem with worry level %d is thrown to %s.\n", item, other.name)
+	}
 	other.catch(item)
 }
 
@@ -155,7 +190,9 @@ func (m *Monkey) catch(item int) {
 }
 
 func (m *Monkey) DoTurn(monkeys []*Monkey) {
-	fmt.Printf("%s:\n", m.name)
+	if debug {
+		fmt.Printf("%s:\n", m.name)
+	}
 
 	for !m.items.IsEmpty() {
 		item := m.items.Pop()
