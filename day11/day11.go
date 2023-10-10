@@ -8,14 +8,17 @@ import (
 )
 
 var (
-	debug = false
+	debug   = false
+	modulus = 1
 )
 
 func Run() {
-	input, err := lib.ReadLines("day11", "monkey-business-test.txt") // monkey-business.txt
+	input, err := lib.ReadLines("day11", "monkey-business.txt") // monkey-business.txt
 	lib.HandleError(err)
 
 	monkeys := loadFile(input)
+
+	fmt.Println("modulus:", modulus)
 
 	for round := 1; round <= 10000; round++ {
 		for _, monkey := range monkeys {
@@ -56,6 +59,9 @@ func NewMonkey(name string, startingItems []int, operation, testCondition, resul
 
 	data := strings.Replace(testCondition, "divisible by ", "", 1)
 	testVal := lib.StrToInt(strings.TrimSpace(data))
+
+	// nice hidden global var
+	modulus *= testVal
 
 	data = strings.Replace(resultIfTrue, "throw to monkey ", "", 1)
 	trueResult := lib.StrToInt(strings.TrimSpace(data))
@@ -155,8 +161,8 @@ func (m *Monkey) inspect(item int) int {
 
 	item = m.opFunc(item)
 
-	// What does this actually do????!!!
-	item = item / 3
+	// Keeps size of numbers under control
+	item = item % modulus
 	if debug {
 		fmt.Printf("\tMonkey gets bored with item. Worry level is divided by 3 to %d.\n", item)
 	}
