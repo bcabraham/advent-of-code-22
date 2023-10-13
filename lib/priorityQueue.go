@@ -72,6 +72,10 @@ func (q *PriorityQueue[T]) IsEmpty() bool {
 	return len(q.data) == 0
 }
 
+func (q *PriorityQueue[T]) Length() int {
+	return len(q.data)
+}
+
 func (q *PriorityQueue[T]) String() string {
 	lines := []string{}
 
