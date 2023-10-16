@@ -34,3 +34,11 @@ In the above diagram, the symbols indicate whether the path exits each square mo
 This path reaches the goal in `_31_` steps, the fewest possible.
 
 _What is the fewest steps required to move from your current position to the location that should get the best signal?_
+
+
+## Research
+This looks like aperfect use case for the A* Pathfinding Algorithm.
+I found this video to use as a refresher for implementing it: https://www.youtube.com/watch?v=-L-WgKMFuhE
+
+![A* Algorithm Pseudocode](a-star-pseudo.png)
+
