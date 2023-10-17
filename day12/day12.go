@@ -25,26 +25,60 @@ z: 122
 */
 
 func Run() {
-	input, err := lib.ReadLines("day12", testFile)
+	input, err := lib.ReadLines("day12", problemFile)
 	lib.HandleError(err)
 
 	part1(input)
+
+	part2(input)
 }
 
 func part1(input []string) {
 	heightmap, start, end := loadFile(input)
 	fmt.Println(heightmap)
 
-	path, nodeMap := AStar(start, end, heightmap)
+	path, nodeMap, _ := AStar(start, end, heightmap)
 
 	fmt.Println("Path taken:")
 	for i, node := range path {
-		fmt.Printf("%d: %s\n", i, node)
-		heightmap[node.Row][node.Col] = '*'
+		debugPrint(fmt.Sprintf("%d: %s\n", i, node))
 	}
 
 	DisplayNodeMap(nodeMap, path)
 	fmt.Println("Path length:", len(path))
+}
+
+func part2(input []string) {
+	fmt.Println("\n---Part 2---")
+	heightmap, starts, end := loadFile2(input)
+	fmt.Println(heightmap)
+
+	shortestPathLength := 9999999
+	var shortestPath NodeList
+	var shortestPathMap NodeMap
+
+	for _, start := range starts {
+		path, nodeMap, foundPath := AStar(start, end, heightmap)
+
+		if !foundPath {
+			continue
+		}
+
+		if len(path) < shortestPathLength {
+			fmt.Println("Found new shortest path:", len(path)-1)
+			shortestPathLength = len(path)
+			shortestPath = path
+			shortestPathMap = nodeMap
+		}
+	}
+
+	fmt.Println("Path taken:")
+	for i, node := range shortestPath {
+		fmt.Printf("%d: %s\n", i, node)
+	}
+
+	DisplayNodeMap(shortestPathMap, shortestPath)
+	fmt.Println("Shortest Path:", shortestPathLength-1)
 }
 
 type Index struct {
@@ -96,6 +130,29 @@ func loadFile(input []string) (HeightMap, Index, Index) {
 	}
 
 	return hm, start, end
+}
+
+func loadFile2(input []string) (HeightMap, []Index, Index) {
+	hm := newHeightMap(len(input), len(input[0]))
+	startIndexes := []Index{}
+	var end Index
+
+	for i, line := range input {
+		for j, height := range line {
+			hm[i][j] = height
+
+			if height == 'S' || height == 'a' {
+				startIndexes = append(startIndexes, Index{i, j})
+			}
+
+			if height == 'E' {
+				end = Index{i, j}
+			}
+
+		}
+	}
+
+	return hm, startIndexes, end
 }
 
 type Node struct {
@@ -264,7 +321,7 @@ func GetLowestFCost(nl NodeList) (NodeList, *Node) {
 	return nodes, current
 }
 
-func AStar(start, end Index, hm HeightMap) (NodeList, NodeMap) {
+func AStar(start, end Index, hm HeightMap) (NodeList, NodeMap, bool) {
 	startNode := NewNode(start.Y, start.X, 'S', nil)
 	endNode := NewNode(end.Y, end.X, 'E', nil)
 
@@ -277,6 +334,8 @@ func AStar(start, end Index, hm HeightMap) (NodeList, NodeMap) {
 
 	var current *Node
 
+	foundPath := false
+
 	for len(openSet) > 0 {
 		debugPrint(fmt.Sprint("OpenSet length:", len(openSet)))
 
@@ -288,6 +347,7 @@ func AStar(start, end Index, hm HeightMap) (NodeList, NodeMap) {
 
 		if current.Equals(endNode) {
 			debugPrint("current == end ? true")
+			foundPath = true
 			break
 		}
 
@@ -328,7 +388,7 @@ func AStar(start, end Index, hm HeightMap) (NodeList, NodeMap) {
 		}
 	}
 
-	return reconstructPath(current), nodeMap
+	return reconstructPath(current), nodeMap, foundPath
 }
 
 func debugPrint(str string) {
