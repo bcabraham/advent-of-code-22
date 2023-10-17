@@ -122,7 +122,7 @@ func (n *Node) Equals(node *Node) bool {
 }
 
 func (n *Node) IsTraversable(node *Node) bool {
-	return n.Value == 'S' && node.Value == 'a' || n.Value == 'z' && node.Value == 'E' || node.Value-n.Value >= -1 && node.Value-n.Value <= 1
+	return n.Value == 'S' && node.Value == 'a' || n.Value == 'z' && node.Value == 'E' || node.Value != 'E' && node.Value-n.Value <= 1
 }
 
 func NewNodeMap(hm HeightMap) NodeMap {
