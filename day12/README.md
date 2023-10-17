@@ -72,3 +72,48 @@ This path reaches the goal in only 29 steps, the fewest possible.
 
 What is the fewest steps required to move starting from any square with elevation a to the location that should get the best signal?
 
+
+```
+a-b-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-a-a-a-a-a-a-a-c-c-c-c-a-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-
+a-b-a-a-a-a-a-a-c-c-a-a-a-a-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-a-a-a-c a-a-a-a-c-a-a-a-a-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-
+a-b-a-a-a-a-a-a-c-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-a-a-a-a-a-a-a-a-a-c-a-a-a-a-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-
+a-b-a-a-a-a-a-a-c-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-a-a-a-a-a-a-a-a-c-c-a-a-a-c a-a-a-c-c-c-c-c-c-c-c-c*c*c*c*c*c*c-c-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-
+a-b-c-c-a-a-a-c-c-a-a-a-a-a-a-c-c-c-a-a-a-a-c-c-a-a-a-a-a-a-a-a-a-a-a-a-a-c-c-c-c-a-a-c a-a-a-c-c-c-c-c-c-c-c-c*a-a-c-a-c*c-c-c-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-
+a-b-c-c-c-c-c-c-c-a-a-a-a-a-c-c-c-c-a-a-a-a-c-c-c-c-c-a-a-a-a-a-c-c-c-a-a-a-c-c-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c*a-a-a-a-c*c*c*c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-c-
+a-b-c-c-c-c-c-c-c-c-c-a-a-a-c-c-c-c-a-a-a-a-c-c-c-c-c-a-a-a-a-a-c-c-c-c-c-c-c-c-c-a-a-a-a-a-c-c-c-c-c-c-c-c-c*c*k-l-l-l-l-l-c*c*c*c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-
+a-b-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-c-c-c-c-c-c-c-c-a-a-c-c-c-c-c-c-c-c-a-a-a-a-a-a-a-c-c-c-c-c-c-c-c*c*k-k-l-l*l*l*l-l-l-c*c*c-c-c-d-d-c-c-c-c-a-a-c-c-c-c-c-c-
+a-b-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-c-c-c-c-c-c-c-c-a-a-a-a-a-a-a-a-c-c-c-c-c-c-c*k-k-k*k*l*s-l*l*l*l-l-c*c*c*d-d-d-d-d-d-a-a-a-c-c-c-c-c-c-
+a-b-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-c-c-a-a-a-a-a-a-a-a-c-c-c-c-c-c*c*k-k*k*s-s-s-s-s-l*l*l*l-l-c*d*d*d*d*d*d-d-d-a-c-c-c-c-c-c-
+a-b-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-c-c-a-a-a-c-a-c-c-c-c-c-c-c*k-k-k*s-s-s-s*s*s*s-s-l*l*l-m-m-m-m-m-d*d*d-d-d-a-a-c-c-c-c-
+a-b-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-c-c-a-a-c*c*c*c*c*c*c*c*c*c*k-k*k*s-s*s*s*u-s*s*s-s-l*m*m*m-m-m-m-m-d*d*d*d-d-a-c-c-c-c-
+a-b-c-c-c-c-c-c-c-a-a-c-c-c-c-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-c-c-c-c-c-c*a-a-a-a-a-c-c-c-k-k-k*r-s*s*u-u-u-u-s*s*s-s-q-m*m*m*m*m*m-m-m-d*d-d-c-c-c-c-c-
+a-b-c-c-c-c-c-c-c-a-a-c-c-c-c-a-a-a-a-a-a-c-c-c-c-c-c-c-a-a-c-c-c-c-a-a-a-a-a-c-c-c-c*c*a-a-a-a-a-c-c-k-k-k*k*r-r*u-u-u*u*u*u-s*s*q-q-q-q-q-q-m*m*m-m-d*d*d-c-c-c-c-c-
+a-b-c-c-c-c-a-a-a-a-a-a-a-a-c-a-a-a-a-a-a-c-c-c-c-c-c-c-a-a-a-a-c-c-a-a-c-c-a-c-c-c-c*a-a-a-a-a-a-c-j-k*k*k*r-r-r*u-u-u*x u*u*u-s*q*q*q*q*q*q*q-m*m*m-m-e*e-c-c-c-c-c-
+a-b-c-a-a-a-a-a-a-a-a-a-a-a-c-a-a-a-a-a-c-c-c-c-c-c-a-a-a-a-a-a-c-c-c-c-c-a-a-c-c-c-c*a-a-a-a-a-j-j-j*j*r-r-r-r*r*u-u*u*x x u*v*v-v-v-v-v-v-q*q-q-m*m-m-e*e-c-c-c-c-c-
+a-b-c-a-a-c c c a-a-a-a-c-c-c-c-a-a-a-a-a-a-a-c-c-c-a-a-a-a-a-c-c-c-a-c-a-a-a-c-c-c-c*a-a-a-a-j-j-j*j*r-r-r*r*r*u-u-u*x x x x v*v*v*v*v*v-v-q*q-q-m*m-e*e*e-c-c-c-c-c-
+a-b-a-a-a-a-c c a-a-a-a-a-c-c-c-c-c-c-c-a-a-a-c-c-c-c-a-a-a-a-a-c-a-a-a-a-a-a-a-a-c-c*c-a-a-j-j-j*j*r-r*r*r*t-u-u*u*u*x x x y v-y y y v*v-v-q*q-q-n*n-e*e-e-c-c-c-c-c-
+a-b-a-a-a-a-a-a-a-a-a-a-a-c-c-c-a-a-a-a-a-a-a-c-c-c-c-a-a-c-a-a-c-a-a-a-a-a-a-a-a-c-c*c-c-c-j-j-j*r-r-r*t-t-t*t*u*x x x O x y y y y y v*v-v-q*q-n*n*n-e*e-e-c-c-c-c-c-
+a-b-a-a-a-a-a-a-a-c-c-a-a-c-c-c-a-a-a-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-c-c-c*c-c-c-j-j-j*r-r-r*t-t-t*x x O x O x-O y y y y y v*v-v-q*q-n*n-n-e*e-e-c-c-c-c-c-
+S-b-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-a-a-a-c-c-c-c-c-c-c-c-a-a-a-a-a-c-c-c-c*c-c-c-j-j-j*r-r-r*t-t-t*x O x-E*z*z*z-O y y y v-v*r-r*r*n-n*n-e*e*e-c-c-c-c-c-c-
+a-b-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-c*c*c*c-c-c-j-j-j*q-q-q*t-t-t*O x-x-x-x*y*y-y-O y v-v-v*r-r*r-n-n*n-e*e-e-c-c-c-c-c-c-
+a-b-a-a-a-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-a-c c a-a-c-c-c-c-c-c-c-c-c-c-a-a-c-c*a-a-a-a-a-j-j-j*q-q-q*t-t-t*t*x-x-x-x*y-y-y-y-O y v-v*r-r*r-n-n*n-e*e-e-c-c-c-c-c-c-
+a-b-a-a-a-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-a-c c a-a-a-c-a-a-a-c-c-c-c-c-c-c-c*c*a-a-a-a-a-j-j-j*j*q-q*q*t-t-t*t*t*x-x*y-y-w-O y y y w*v-r*r-n-n*n-f*e-e-c-c-c-c-c-c-
+a-b-c-a-a-a-c-c-c-c-c-c-c-a-a-a-a-a-a-a-a-a-a-a-c a-a-a-a-a-a-a-c-c-c-c-c-c-c-c*a-a-a-a-a-a-c-i-i-i*i*q-q*q*q*t-t-t*x-w*y-y-w-w-y y w*w*w-r*r-r-n*n-f*f-f-c-c-c-c-c-c-
+a-b-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-a-a-a-a-c c a-a-a-a-a-a-c-c-c-c-c-c-c-c-c*a-a-a-a-a-a-c-c-i-i-i*i*q-q-q*q*t-t*w-w*y-w*w*w*w*w*w*w-w-r*r-r-n*n-f*f-f-c-c-c-c-c-c-
+a-b-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-c-c-c-a-a-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c*a-a-a-a-a-a-c-c-c-i-i-i*i*q-q-q*t-t*w-w*w*w*w-s-w-w-w-w-r*r*r-r-n*n-f*f-f-c-c-c-c-c-c-
+a-b-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-c-c-c-a-a-a-a-a-a-a-a-a-c-c-c-c-c-c-c-c*c-a-a-a-c-c-c-c-c-c-i-i-i*q-q-q*t-s*w-w-w-w-s*s*s*s*r*r*r*r-r-r-o*o-f*f-f-c-c-c-c-c-c-
+a-b-c-c-c-c-c-c-a-a-a-a-a-c-a-a-a-a-a-a-c-c-c-a-a-a-a-a-a-a-a-a-a-c-c-c-c-c-c-c*c-c-c-c-c-c-c-c-c-c-i-i-i*q-q-q*s-s*s*w-s*s*s*s-s-s-s-r-r-r-r-o*o*o-f*f-f-a-c-c-c-c-c-
+a-b-c-c-c-c-c-c-a-a-a-a-a-c-a-a-c-c-a-a-c-c-c-c-c-c-a-a-a-c-a-a-a-c-c-c-c-c-c-c*c-c-c-c-c-c-c-c-c-c-c-i-i*i*q-q*s-s-s*s*s*s-s-p-o-o-r-r-r-o*o*o*o-o-f*f-f-a-a-c-c-c-c-
+a-b-c-c-c-c-c-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-c-c-c-c-c-c-c-c-c-c-c*c-c-c-c-c-c-c-c-c-c-c-i-i-i*q-p*p*s-s-s-s-s-p*p*p*o*o*o*o*o*o-o-o-f*f*f-f-a-a-c-c-c-c-
+a-b-c-c-c-c-c-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-c-c-c-c-c-c-c-c-c-c-c-c*c-c-c-c-c-c-c-c-c-c-c-c-i-i*p-p-p*p*p*p*p*p*p*p-p-o-o-o-o-o-o-o-f*f*f-f-a-a-c-c-c-c-c-
+a-b-c-c-c-c-c-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c*c*c*c*c*c*c*c-c-c-c-c-c-c-c-c-c-c-c-i-i*h*p-p-p-p-p-p-p-p-g*g*g*g*g*g*g*g*g*f*f-f-a-a-a-c-c-c-c-c-
+a*b*c*c*c*c*c*c*a-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c*c*c*c*c*c*c*c*a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-h-h-h*h*p-p-p-p-p-p-h*g*g-g-g-g-g-g-g-g-g-f-a-a-a-a-c-c-c-c-c-
+a b-a-a-a-c-c-c*c*c*c*c*c*c*c*c*c*c*c*c*c*c*c*c*c*c*c*a-c-c-c-c-a-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-h-h-h*h*h*h*h*h*h*h*g-g-g-g-g-g-g-g-g-c-a-a-c-c-c-c-c-c-c-c-
+a-b-a-a-c-c-a-a-a-c-c-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-c-c-c-a-a-a-c-a-a-c-c-c-a-a-a-a-a-c-c-c-c-c-c-c-c-h-h-h-h-h-h-h-h-h-g-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-
+a-b-a-a-a-c-a-a-a-c-a-a-c-c-c-c-c-c-c-c-c-a-a-a-c-c-a-a-a-a-c-a-a-a-a-a-a-a-a-c-c-a-a-a-a-a-c-c-c-c-c-c-c-c-c-h-h-h-h-h-h-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-
+a-b-a-a-a-c-c-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-a-a-a-c-a-a-a-a-a-a-a-a-c a-a-a-a-c-c-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-a-a-a-c-c-c-a-a-a-a-c-c-c-c-c-c-c-c-c-c-c-a-c-c-c-a-
+a-b-c-c-c-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-a-a-a-a-a-a-a-c a-a-a-a-c-c-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-a-a-a-c-c-c-c-a-a-a-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-a-
+a-b-c-c-c-a-a-a-a-a-a-a-a-c-c-c-c-c-c-c-a-a-a-a-a-a-a-a-a-a-a-a-a-a-a-a-a-c-c-c-c-a-a-a-a-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-
+a-b-c-c-c-a-a-c a-a-a-a-a-c-c-c-c-c-c-a-a-a-a-a-a-a-a-a-a-a-a-a-a-a-a-a-a-a-c-c-c-c-c-a-a-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-c-a-a-a-a-a-
+```
+Shortest Path: 399
