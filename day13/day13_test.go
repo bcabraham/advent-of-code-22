@@ -15,3 +15,14 @@ func TestCompareIntegersLowerFirst(t *testing.T) {
 		t.Errorf("Compare(1, 2) reason = %s; want 'Left side is smaller, so inputs are in the right order'", reason)
 	}
 }
+
+func TestCompareIntegersAreTheSame(t *testing.T) {
+	result, reason := day13.Compare(1, 1)
+	if !result {
+		t.Errorf("Compare(1, 1) = %t; want true", result)
+	}
+
+	if reason != "Integers are the same" {
+		t.Errorf("Compare(1, 1) reason = %s; want 'Integers are the same'", reason)
+	}
+}
