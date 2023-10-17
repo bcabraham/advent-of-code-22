@@ -1,8 +1,8 @@
-# Usage: make dir=dayN
+# Usage: make new dir=dayN
 dir="newDir"
 
 help:
-	echo "usage: make dir=dayN"
+	echo "usage: make new dir=dayN"
 
 new:
 	mkdir $(dir)
