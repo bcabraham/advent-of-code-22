@@ -25,9 +25,13 @@ z: 122
 */
 
 func Run() {
-	input, err := lib.ReadLines("day12", problemFile)
+	input, err := lib.ReadLines("day12", testFile)
 	lib.HandleError(err)
 
+	part1(input)
+}
+
+func part1(input []string) {
 	heightmap, start, end := loadFile(input)
 	fmt.Println(heightmap)
 
@@ -39,8 +43,8 @@ func Run() {
 		heightmap[node.Row][node.Col] = '*'
 	}
 
-	fmt.Println("Path length:", len(path))
 	DisplayNodeMap(nodeMap, path)
+	fmt.Println("Path length:", len(path))
 }
 
 type Index struct {
