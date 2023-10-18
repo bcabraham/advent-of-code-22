@@ -50,3 +50,27 @@ func Tokenize(str string) []string {
 
 	return tokens
 }
+
+func CompareLists(left, right []string) (bool, string) {
+	var leftIndex, rightIndex int
+	var leftTokens, rightTokens int
+
+	for leftIndex < len(left) {
+		// If the left list runs out of items first, the inputs are in the right order.
+		leftToken := left[leftIndex]
+		rightToken := left[rightIndex]
+
+		if leftToken == "[" || leftToken == "]" {
+			leftIndex++
+		}
+		if rightToken == "[" || leftToken == "]" {
+			rightIndex++
+		}
+	}
+
+	if leftTokens == rightTokens {
+		return true, "Lists are the same length"
+	}
+
+	return false, "Left side is larger, so inputs are not in the right order"
+}

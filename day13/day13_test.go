@@ -74,3 +74,16 @@ func TestTokenizeStringDoubleDigit(t *testing.T) {
 	}
 
 }
+
+func TestCompareListEmpty(t *testing.T) {
+	empty := []string{"[", "]"}
+	result, reason := day13.CompareLists(empty, empty)
+
+	if !result {
+		t.Errorf("CompareLists([], ][]) = %t; want true", result)
+	}
+
+	if reason != "Lists are the same length" {
+		t.Errorf("CompareLists([], ][]) reason = %s; want 'Lists are the same length'", reason)
+	}
+}
