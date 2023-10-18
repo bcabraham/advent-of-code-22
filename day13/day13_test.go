@@ -61,3 +61,16 @@ func TestTokenizeStringComplex(t *testing.T) {
 		}
 	}
 }
+
+func TestTokenizeStringDoubleDigit(t *testing.T) {
+	result := day13.Tokenize("[10]")
+
+	want := []string{"[", "10", "]"}
+
+	for i, token := range want {
+		if result[i] != token {
+			t.Errorf("Tokenize(\"[10]\") = %s; want []string{'[','10',']'}", result)
+		}
+	}
+
+}
