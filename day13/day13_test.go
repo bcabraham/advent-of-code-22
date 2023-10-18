@@ -37,3 +37,27 @@ func TestCompareIntegersHigherFirst(t *testing.T) {
 		t.Errorf("Compare(2, 1) reason = %s; want 'Left side is larger, so inputs are not in the right order'", reason)
 	}
 }
+
+func TestTokenizeStringSimple(t *testing.T) {
+	result := day13.Tokenize("[1,1,3,1,1]")
+
+	want := []string{"[", "1", "1", "3", "1", "1", "]"}
+
+	for i, token := range want {
+		if result[i] != token {
+			t.Errorf("Tokenize(\"[1,1,3,1,1]\") = %s; want []string{'[','1','1','3','1','1',']'}", result)
+		}
+	}
+}
+
+func TestTokenizeStringComplex(t *testing.T) {
+	result := day13.Tokenize("[[1],[2,3,4]]")
+
+	want := []string{"[", "[", "1", "]", "[", "2", "3", "4", "]", "]"}
+
+	for i, token := range want {
+		if result[i] != token {
+			t.Errorf("Tokenize(\"[[1],[2,3,4]]\") = %s; want []string{'[','[','1',']','[','2','3','4',']',']'}", result)
+		}
+	}
+}
