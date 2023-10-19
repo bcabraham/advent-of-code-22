@@ -1,11 +1,19 @@
 package day13
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
+type Packet interface{}
+type PacketList []Packet
+
 func Run() {
-	fmt.Println("[1,1,3,1,1]", Tokenize("[1,1,3,1,1]"))
+	left := "[1,1,3,1,1]"
+	right := "[1,1,5,1,1]"
+
+	fmt.Println(left, Tokenize(left))
+	fmt.Println(right, Tokenize(right))
 	fmt.Println("[[1],[2,3,4]]", Tokenize("[[1],[2,3,4]]"))
 }
 
@@ -22,55 +30,9 @@ func Compare(left, right int) (bool, string) {
 	return false, "Left side is larger, so inputs are not in the right order"
 }
 
-func Tokenize(str string) []string {
-	tokens := []string{}
-	// [1,1,3,1,1]
-	// [[1],[2,3,4]]
-
-	var token string
-	for _, s := range str {
-		if s == '[' {
-			tokens = append(tokens, string(s))
-		} else if s == ',' {
-			if len(token) > 0 {
-				tokens = append(tokens, token)
-				token = ""
-			}
-		} else if s == ']' {
-			if len(token) > 0 {
-				tokens = append(tokens, token)
-				token = ""
-			}
-
-			tokens = append(tokens, string(s))
-		} else {
-			token += string(s)
-		}
-	}
+func Tokenize(str string) PacketList {
+	tokens := PacketList{}
+	json.Unmarshal([]byte(str), &tokens)
 
 	return tokens
-}
-
-func CompareLists(left, right []string) (bool, string) {
-	var leftIndex, rightIndex int
-	var leftTokens, rightTokens int
-
-	for leftIndex < len(left) {
-		// If the left list runs out of items first, the inputs are in the right order.
-		leftToken := left[leftIndex]
-		rightToken := left[rightIndex]
-
-		if leftToken == "[" || leftToken == "]" {
-			leftIndex++
-		}
-		if rightToken == "[" || leftToken == "]" {
-			rightIndex++
-		}
-	}
-
-	if leftTokens == rightTokens {
-		return true, "Lists are the same length"
-	}
-
-	return false, "Left side is larger, so inputs are not in the right order"
 }

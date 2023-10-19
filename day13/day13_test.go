@@ -2,6 +2,7 @@ package day13_test
 
 import (
 	"advent-of-code-22/day13"
+	"fmt"
 	"testing"
 )
 
@@ -41,11 +42,17 @@ func TestCompareIntegersHigherFirst(t *testing.T) {
 func TestTokenizeStringSimple(t *testing.T) {
 	result := day13.Tokenize("[1,1,3,1,1]")
 
-	want := []string{"[", "1", "1", "3", "1", "1", "]"}
+	want := day13.PacketList{
+		float64(1),
+		float64(1),
+		float64(3),
+		float64(1),
+		float64(1),
+	}
 
 	for i, token := range want {
 		if result[i] != token {
-			t.Errorf("Tokenize(\"[1,1,3,1,1]\") = %s; want []string{'[','1','1','3','1','1',']'}", result)
+			t.Errorf("Tokenize(\"[1,1,3,1,1]\") = %v; want PacketList{1,1,3,1,1}", result)
 		}
 	}
 }
@@ -53,37 +60,26 @@ func TestTokenizeStringSimple(t *testing.T) {
 func TestTokenizeStringComplex(t *testing.T) {
 	result := day13.Tokenize("[[1],[2,3,4]]")
 
-	want := []string{"[", "[", "1", "]", "[", "2", "3", "4", "]", "]"}
+	want := day13.PacketList{
+		day13.PacketList{float64(1)},
+		day13.PacketList{
+			float64(2),
+			float64(3),
+			float64(4),
+		},
+	}
 
-	for i, token := range want {
-		if result[i] != token {
-			t.Errorf("Tokenize(\"[[1],[2,3,4]]\") = %s; want []string{'[','[','1',']','[','2','3','4',']',']'}", result)
-		}
+	if fmt.Sprintf("%v", result) != fmt.Sprintf("%v", want) {
+		t.Errorf("Tokenize(\"[[1],[2,3,4]]\") = %v; want PacketList{PacketList{1}, PacketList{2, 3, 4}}", result)
 	}
 }
 
 func TestTokenizeStringDoubleDigit(t *testing.T) {
 	result := day13.Tokenize("[10]")
 
-	want := []string{"[", "10", "]"}
+	want := day13.PacketList{float64(10)}
 
-	for i, token := range want {
-		if result[i] != token {
-			t.Errorf("Tokenize(\"[10]\") = %s; want []string{'[','10',']'}", result)
-		}
-	}
-
-}
-
-func TestCompareListEmpty(t *testing.T) {
-	empty := []string{"[", "]"}
-	result, reason := day13.CompareLists(empty, empty)
-
-	if !result {
-		t.Errorf("CompareLists([], ][]) = %t; want true", result)
-	}
-
-	if reason != "Lists are the same length" {
-		t.Errorf("CompareLists([], ][]) reason = %s; want 'Lists are the same length'", reason)
+	if fmt.Sprintf("%v", result) != fmt.Sprintf("%v", want) {
+		t.Errorf("Tokenize(\"[10]\") = %v; want PacketList{10}", result)
 	}
 }
